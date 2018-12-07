@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .pad {
+    margin-right: 5%;
+    margin-bottom: 5%;
+  }
+
+  .red-button {
+      background-color: red;
+  }
+
+  .orange-button {
+      background-color: orange;
+  }
+
+  .blue-button {
+      background-color: blue;
+  }
+
+  .yellow-button {
+      background-color: yellow;
+  }
+
+  .green-button {
+      background-color: green;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2" style="padding-bottom: 3%; padding-top: 3%;">
+      <h3>What pattern is lighting up on your device?</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 offset-4">
+      <div class="btn-group btn-group-lg">
+        <button type="button" class="btn btn-primary btn-lg code-btn pad red-button" data-val="1">1</button>
+        <button type="button" class="btn btn-primary btn-lg code-btn pad yellow-button" data-val="3">3</button>
+      </div>
+
+      <div class="btn-group btn-group-lg">
+          <button type="button" class="btn btn-primary btn-lg code-btn pad green-button" data-val="2">2</button>
+          <button type="button" class="btn btn-primary btn-lg code-btn pad blue-button" data-val="4">4</button>
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4 offset-3">
+      <div style="margin-left:-12%; margin-top: 5%; margin-bottom: 5%;">
+        <div class="btn-group btn-group-lg">
+          <button type="button" class="btn btn-light btn-lg" id="button-0"> </button>
+          <button type="button" class="btn btn-light btn-lg" id="button-1"> </button>
+          <button type="button" class="btn btn-light btn-lg" id="button-2"> </button>
+          <button type="button" class="btn btn-light btn-lg" id="button-3"> </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 offset-4">
+      <div style="margin-left: 3.5%; margin-top: 5%; margin-bottom: 5%;">
+          <form id="form" action="" method="POST">
+              {% csrf_token %}
+              <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+              <input type="hidden" name="hidden" id="hidden" value="    ">
+            </form>              
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+  const replaceAt = function (string, index, replacement) {
+    return string.substr(0, index) + replacement + string.substr(index + replacement.length);
+  }
+
+  $(document).ready(function () {
+    var i = 0;
+    var completed = false;
+    $('.code-btn').click(function (event) {
+      if (i > 3) {
+        i = 0;
+        completed = true;
+      }
+      var val = $(this).attr('data-val');
+      var selector = `#button-${i}`;
+      $(selector).val(`${val}`);
+      $(selector).text(`${val}`);
+      $(selector).css(
+        { 'border-style': 'solid', 'border-weight': '1px', 'border-color': '#C1E0FF' }
+      );
+
+      var hidden = $('#hidden').val();
+      hidden = replaceAt(hidden, i, val);
+      $('#hidden').val(hidden)
+      setTimeout(function () {
+        $(selector).css({ 'border-style': 'none', 'border-weight': '1px' });
+      }, 1000);
+      i++;
+    });
+  });
+</script>
+{% endblock %}

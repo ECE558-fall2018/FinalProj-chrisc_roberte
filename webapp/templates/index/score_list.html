@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Top {{ view.paginate_by }} Scores</h1>
+            <ul>
+                {% for score in object_list %}
+                <li>{{ score.user.username }}: {{ score.score }}</li>
+                {% empty %}
+                    <li>No scores yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

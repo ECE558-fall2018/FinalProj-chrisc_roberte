@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm">
+      </div>
+      <div class="col-sm">
+        {% if user.is_authenticated %}
+        <p>
+            User: {{ user }}
+           </p>
+        
+           <p>
+            Score: <span id="score">{{ score.score }}</span>
+           </p>
+           <a href="{% url 'button-input' %}">Start Game</a>
+      </div>
+      {% else %}
+          <h3>Simon App</h3>
+          <p>Please login or signup to play</p>
+      {% endif %}
+      <div class="col-sm">
+      </div>
+    </div>
+  </div>
+{% if user.is_authenticated %}
+{% block javascript %}
+  <script>
+    $(document).ready(function() {
+
+    var url = "{% url 'score' username=view.request.user.username %}"
+    var interval = setInterval(function() {
+      $.get(url, function(data) {
+        $("#score").text(data.score);
+      });
+    }, 1000);
+
+    window.onbeforeunload = function(e) {
+      clearInterval(interval);
+    };
+  });
+  </script>
+  
+{% endblock %}
+{% endif %}
+
+{% endblock %}

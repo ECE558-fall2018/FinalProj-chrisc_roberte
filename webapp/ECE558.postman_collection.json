@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "70dc4d50-2ade-40d5-a228-aba9645a9ac1",
+		"name": "ECE558",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "127.0.0.1:8000/api/v1/session/1234/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/api/v1/session/1111/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"session",
+						"1111",
+						""
+					]
+				},
+				"description": "Create session"
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:8000/api/v1/user/1234/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"score\": 50\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/api/v1/user/1111/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"1111",
+						""
+					],
+					"query": [
+						{
+							"key": "score",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:8000/api/v1/score/myfantasticusername/",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"score\": 3\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/api/v1/score/myusername/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"score",
+						"myusername",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:8000/api/v1/session/1111/",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:8000/api/v1/session/1111/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"session",
+						"1111",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
